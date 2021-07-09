@@ -16,15 +16,22 @@ class Custom:
         train_val_file = open(os.path.join(root, 'train_test_split.txt'))
         self.root = root
         self.is_train = is_train
+
         img_name_list = []
         for line in img_txt_file:
             img_name_list.append(' '.join(line[:-1].split(' ')[1:]))
+
+
         label_list = []
         for line in label_txt_file:
             label_list.append(int(line[:-1].split(' ')[-1]) - 1)
+
+
         train_test_list = []
         for line in train_val_file:
             train_test_list.append(int(line[:-1].split(' ')[-1]))
+
+
         self.train_file_list = [x for i, x in zip(train_test_list, img_name_list) if i]
         self.test_file_list = [x for i, x in zip(train_test_list, img_name_list) if not i]
         if self.is_train:
